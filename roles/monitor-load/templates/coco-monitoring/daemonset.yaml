@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kata-monitor
+  namespace: kube-system
+  labels:
+    app: kata-monitor
+spec:
+  selector:
+    matchLabels:
+      app: kata-monitor
+  template:
+    metadata:
+      labels:
+        app: kata-monitor
+    spec:
+      serviceAccountName: kata-monitor
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: kata-monitor
+        image: docker.io/sandlbn/kata-monitor:v1.0.0
+        imagePullPolicy: Always
+        args:
+        - "/etc/kata-monitor/config.yaml"
+        ports:
+        - containerPort: 9090
+          name: metrics
+          protocol: TCP
+        volumeMounts:
+        - name: config
+          mountPath: /etc/kata-monitor
+          readOnly: true
+        - name: kubeconfig
+          mountPath: /etc/kubeconfig
+          readOnly: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: metrics
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: metrics
+          initialDelaySeconds: 5
+          periodSeconds: 10
+      volumes:
+      - name: config
+        configMap:
+          name: kata-monitor-config
+      - name: kubeconfig
+        hostPath:
+          path: /etc/kubernetes
+          type: Directory

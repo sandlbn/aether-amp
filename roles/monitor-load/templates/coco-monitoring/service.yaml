@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kata-monitor
+  namespace: kube-system
+  labels:
+    app: kata-monitor
+spec:
+  selector:
+    app: kata-monitor
+  ports:
+    - name: prometheus-exporter
+      port: 9090
+      targetPort: 9090

@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kata-monitor
+  namespace: cattle-monitoring-system
+spec:
+  selector:
+    matchLabels:
+      app: kata-monitor
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+    - port: prometheus-exporter
+      path: /metrics
+      interval: 30s

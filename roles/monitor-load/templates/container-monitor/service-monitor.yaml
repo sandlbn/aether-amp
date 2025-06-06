@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: container-hash-monitor
+  namespace: cattle-monitoring-system
+spec:
+  selector:
+    matchLabels:
+      app: container-hash-monitor
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 60s

@@ -1,0 +1,6 @@
+resources:
+  - ./configmap.yaml
+  - ./rbac.yaml
+  - ./daemonset.yaml
+  - ./service.yaml
+  - ./servicemonitor.yaml
