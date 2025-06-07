@@ -10,6 +10,5 @@ data:
       - kube-system
       - production
       - staging
-    metricsPort: 9090
-    scanInterval: 30s
-    kubeconfigPath: /etc/kubeconfig/admin.conf
+    metrics_port: 9090
+    scan_interval: 30s

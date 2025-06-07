@@ -16,9 +16,13 @@ spec:
         app: container-hash-monitor
     spec:
       serviceAccountName: container-hash-monitor
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
       containers:
       - name: container-hash-monitor
-        image: docker.io/sandlbn/container-hash-monitor:v1.0.0
+        image: docker.io/sandlbn/container-hash-monitor:v1.0.1
+        command:
+        - "/usr/local/bin/container-hash-monitor"
         args:
         - "/etc/container-hash-monitor/config.yaml"
         ports:

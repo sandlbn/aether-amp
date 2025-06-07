@@ -33,3 +33,39 @@
     path: "/tmp/monitoring"
     state: absent
   when: inventory_hostname in groups['master_nodes']
+
+- name: Copy coco monitoring content in /tmp/monitoring to remote host
+  copy:
+    src:  "{{ ROOT_DIR }}/{{ amp.coco_dashboard }}/"
+    dest: /tmp/monitoring/
+  when: inventory_hostname in groups['master_nodes']
+
+- name: apply coco monitoring dashboard
+  shell: |
+    kubectl apply -k /tmp/monitoring
+  when: inventory_hostname in groups['master_nodes']
+  ignore_errors: yes
+
+- name: remove /tmp/monitoring
+  file:
+    path: "/tmp/monitoring"
+    state: absent
+  when: inventory_hostname in groups['master_nodes']
+
+- name: Copy container monitoring content in /tmp/monitoring to remote host
+  copy:
+    src:  "{{ ROOT_DIR }}/{{ amp.container_dashboard }}/"
+    dest: /tmp/monitoring/
+  when: inventory_hostname in groups['master_nodes']
+
+- name: apply coco monitoring dashboard
+  shell: |
+    kubectl apply -k /tmp/monitoring
+  when: inventory_hostname in groups['master_nodes']
+  ignore_errors: yes
+
+- name: remove /tmp/monitoring
+  file:
+    path: "/tmp/monitoring"
+    state: absent
+  when: inventory_hostname in groups['master_nodes']

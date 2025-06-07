@@ -16,7 +16,7 @@ spec:
     spec:
       serviceAccountName: kata-monitor
       nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
+        node-role.kubernetes.io/control-plane: "true"
       tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
@@ -26,8 +26,10 @@ spec:
         effect: NoSchedule
       containers:
       - name: kata-monitor
-        image: docker.io/sandlbn/kata-monitor:v1.0.0
+        image: docker.io/sandlbn/kata-monitor:v1.0.2
         imagePullPolicy: Always
+        command:
+        - "/usr/local/bin/kata-monitor"
         args:
         - "/etc/kata-monitor/config.yaml"
         ports:
@@ -66,5 +68,5 @@ spec:
           name: kata-monitor-config
       - name: kubeconfig
         hostPath:
-          path: /etc/kubernetes
+          path: /var/lib/rancher/rke2/server/cred
           type: Directory

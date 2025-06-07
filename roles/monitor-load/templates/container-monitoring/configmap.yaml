@@ -6,12 +6,8 @@ metadata:
 data:
   config.yaml: |
     namespaces:
-      - default
-      - kube-system
-      - production
-      - staging
+      - aether-5gc
     metrics_port: 9091
     scan_interval: 60s
-    kubeconfig_path: ""
-    track_mode: services
+    track_mode: allpods
     include_init_containers: false
