@@ -1,6 +1,6 @@
 resources:
   - ./configmap.yaml
   - ./rbac.yaml
-  - ./daemonset.yaml
+  - ./deployment.yaml
   - ./service.yaml
   - ./servicemonitor.yaml
