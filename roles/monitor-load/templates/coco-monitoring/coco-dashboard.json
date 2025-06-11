@@ -39,7 +39,7 @@
       },
       "id": 20,
       "panels": [],
-      "title": "Container & Kata Overview",
+      "title": "Container Security Overview",
       "type": "row"
     },
     {
@@ -159,7 +159,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kata Protected Pods",
+      "title": "Protected Pods",
       "type": "stat"
     },
     {
@@ -281,7 +281,7 @@
           "editorMode": "code",
           "expr": "avg(rate(kata_monitor_scan_duration_seconds_sum[5m]) / rate(kata_monitor_scan_duration_seconds_count[5m]))",
           "hide": false,
-          "legendFormat": "Kata Monitor Scan",
+          "legendFormat": "Secured Monitor Scan",
           "range": true,
           "refId": "B"
         }
@@ -418,7 +418,7 @@
           "refId": "A"
         }
       ],
-      "title": "Avg Kata Scan Time",
+      "title": "Avg Protected Services Scan Time",
       "type": "gauge"
     },
     {
@@ -546,7 +546,7 @@
     },
     {
       "datasource": null,
-      "description": "Pods secured by Kata runtime",
+      "description": "Pods secured by TDX/Kata runtime",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -611,7 +611,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kata Protected Pods",
+      "title": "Protected Pods",
       "transformations": [
         {
           "id": "organize",
@@ -861,7 +861,7 @@
           "refId": "A"
         }
       ],
-      "title": "Kata Monitor Scan Duration Distribution",
+      "title": "Protected Monitor Scan Duration Distribution",
       "tooltip": {
         "show": true,
         "showHistogram": false
