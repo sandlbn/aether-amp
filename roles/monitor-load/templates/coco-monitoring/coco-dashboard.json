@@ -24,7 +24,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "iteration": 1749541478063,
+  "id": 40,
+  "iteration": 1749839374998,
   "links": [],
   "panels": [
     {
@@ -152,7 +153,7 @@
       "type": "table"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
@@ -161,624 +162,641 @@
         "y": 9
       },
       "id": 20,
-      "panels": [
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 0,
-            "y": 9
-          },
-          "id": 2,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "count(count by (image, short_hash) (container_image_info))",
-              "legendFormat": "Unique Images",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Unique Container Images",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "blue",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "short"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 4,
-            "y": 9
-          },
-          "id": 3,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "count(kata_runtime_services)",
-              "legendFormat": "Kata Pods",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Kata Protected Pods",
-          "type": "stat"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "graph": false,
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 2,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": false
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "s"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byRegexp",
-                  "options": "/Container/"
-                },
-                "properties": [
-                  {
-                    "id": "color",
-                    "value": {
-                      "fixedColor": "orange",
-                      "mode": "fixed"
-                    }
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byRegexp",
-                  "options": "/Kata/"
-                },
-                "properties": [
-                  {
-                    "id": "color",
-                    "value": {
-                      "fixedColor": "blue",
-                      "mode": "fixed"
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 16,
-            "x": 8,
-            "y": 9
-          },
-          "id": 4,
-          "options": {
-            "legend": {
-              "calcs": [
-                "mean",
-                "lastNotNull"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            },
-            "tooltipOptions": {
-              "mode": "single"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "avg(rate(container_hash_scan_duration_seconds_sum[5m]) / rate(container_hash_scan_duration_seconds_count[5m]))",
-              "legendFormat": "Container Hash Scan",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "avg(rate(kata_monitor_scan_duration_seconds_sum[5m]) / rate(kata_monitor_scan_duration_seconds_count[5m]))",
-              "hide": false,
-              "legendFormat": "Kata Monitor Scan",
-              "range": true,
-              "refId": "B"
-            }
-          ],
-          "title": "Scan Duration Comparison",
-          "type": "timeseries"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 0.05
-                  },
-                  {
-                    "color": "red",
-                    "value": 0.1
-                  }
-                ]
-              },
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 0,
-            "y": 13
-          },
-          "id": 5,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "avg(rate(container_hash_scan_duration_seconds_sum[5m]) / rate(container_hash_scan_duration_seconds_count[5m]))",
-              "legendFormat": "Avg Duration",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Avg Container Scan Time",
-          "type": "gauge"
-        },
-        {
-          "datasource": null,
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 0.05
-                  },
-                  {
-                    "color": "red",
-                    "value": 0.1
-                  }
-                ]
-              },
-              "unit": "s"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 4,
-            "y": 13
-          },
-          "id": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "avg(rate(kata_monitor_scan_duration_seconds_sum[5m]) / rate(kata_monitor_scan_duration_seconds_count[5m]))",
-              "legendFormat": "Avg Duration",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Avg Kata Scan Time",
-          "type": "gauge"
-        }
-      ],
-      "title": "Container & Kata Overview",
+      "panels": [],
+      "title": "Deployment Security Overview",
       "type": "row"
     },
     {
-      "collapsed": true,
       "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 4,
+        "w": 4,
         "x": 0,
         "y": 10
       },
-      "id": 21,
-      "panels": [
-        {
-          "datasource": null,
-          "description": "Unique list of container images with their hashes",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "auto",
-                "filterable": false
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Short Hash"
-                },
-                "properties": [
-                  {
-                    "id": "custom.width",
-                    "value": 120
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Count"
-                },
-                "properties": [
-                  {
-                    "id": "custom.width",
-                    "value": 80
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 12,
-            "x": 0,
-            "y": 10
-          },
-          "id": 7,
-          "options": {
-            "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "showHeader": true,
-            "sortBy": [
-              {
-                "desc": true,
-                "displayName": "Count"
-              }
-            ]
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "expr": "count by (image, short_hash) (container_image_info)",
-              "format": "table",
-              "instant": true,
-              "range": false,
-              "refId": "A"
-            }
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
           ],
-          "title": "Unique Container Images with Hashes",
-          "transformations": [
-            {
-              "id": "organize",
-              "options": {
-                "excludeByName": {
-                  "Time": true
-                },
-                "indexByName": {},
-                "renameByName": {
-                  "Value": "Count",
-                  "image": "Image",
-                  "short_hash": "Short Hash"
-                }
-              }
-            }
-          ],
-          "type": "table"
+          "fields": "",
+          "values": false
         },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.11",
+      "targets": [
         {
-          "datasource": null,
-          "description": "Pods secured by Kata runtime",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "auto",
-                "filterable": false
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
           },
-          "gridPos": {
-            "h": 10,
-            "w": 12,
-            "x": 12,
-            "y": 10
-          },
-          "id": 8,
-          "options": {
-            "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "showHeader": true,
-            "sortBy": []
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "w5yLd7d4z"
-              },
-              "editorMode": "code",
-              "exemplar": true,
-              "expr": "kata_runtime_services",
-              "format": "table",
-              "instant": true,
-              "interval": "",
-              "legendFormat": "",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Kata Protected Pods",
-          "transformations": [
-            {
-              "id": "organize",
-              "options": {
-                "excludeByName": {
-                  "Time": true,
-                  "Value": true,
-                  "__name__": true,
-                  "container": true,
-                  "endpoint": true,
-                  "job": true,
-                  "namespace": true,
-                  "pod": true,
-                  "service": true
-                },
-                "indexByName": {
-                  "Time": 4,
-                  "Value": 12,
-                  "__name__": 5,
-                  "container": 6,
-                  "endpoint": 7,
-                  "exported_namespace": 2,
-                  "exported_pod": 1,
-                  "instance": 8,
-                  "job": 9,
-                  "namespace": 0,
-                  "pod": 3,
-                  "runtime_class": 10,
-                  "service": 11
-                },
-                "renameByName": {
-                  "Time": "",
-                  "exported_namespace": "Name Space",
-                  "exported_pod": "Pod Name",
-                  "namespace": "Namespace",
-                  "pod": "Pod",
-                  "runtime_class": "Runtime Class"
-                }
-              }
-            }
-          ],
-          "type": "table"
+          "editorMode": "code",
+          "expr": "count(count by (image, short_hash) (container_image_info))",
+          "legendFormat": "Unique Images",
+          "range": true,
+          "refId": "A"
         }
       ],
-      "title": "Unique Services & Images",
+      "title": "Unique Container Images",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 10
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.11",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "expr": "count(kubernetes_runtime_pods{runtime_class=~\"kata.*\"})",
+          "legendFormat": "Kata Pods",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "TDX Protected Services",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Container/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Runtime/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 8,
+        "y": 10
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "expr": "avg(rate(container_hash_scan_duration_seconds_sum[5m]) / rate(container_hash_scan_duration_seconds_count[5m]))",
+          "legendFormat": "Container Hash Scan",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "expr": "avg(rate(runtime_monitor_scan_duration_seconds_sum[5m]) / rate(runtime_monitor_scan_duration_seconds_count[5m]))",
+          "hide": false,
+          "legendFormat": "Runtime Monitor Scan",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Scan Duration Comparison",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.05
+              },
+              {
+                "color": "red",
+                "value": 0.1
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 14
+      },
+      "id": 5,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.5.11",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "expr": "avg(rate(container_hash_scan_duration_seconds_sum[5m]) / rate(container_hash_scan_duration_seconds_count[5m]))",
+          "legendFormat": "Avg Duration",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Avg Container Scan Time",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.05
+              },
+              {
+                "color": "red",
+                "value": 0.1
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 14
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.5.11",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg(rate(runtime_monitor_scan_duration_seconds_sum[5m]) / rate(runtime_monitor_scan_duration_seconds_count[5m]))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Avg Duration",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Avg Runtime Scan Time",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 21,
+      "panels": [],
+      "title": "Runtime Protection Status",
       "type": "row"
+    },
+    {
+      "datasource": null,
+      "description": "Unprotected services",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "color-background",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Runtime Class"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Namespace"
+          }
+        ]
+      },
+      "pluginVersion": "7.5.11",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "kubernetes_runtime_services{runtime_class=\"default\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "⚠️ Unprotected services",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "namespace": true,
+              "pod": true,
+              "service": true
+            },
+            "indexByName": {
+              "Time": 1,
+              "Value": 12,
+              "__name__": 2,
+              "container": 3,
+              "endpoint": 4,
+              "exported_namespace": 9,
+              "exported_service": 0,
+              "instance": 5,
+              "job": 6,
+              "namespace": 7,
+              "pod": 8,
+              "runtime_class": 10,
+              "service": 11
+            },
+            "renameByName": {
+              "Time": "",
+              "exported_namespace": "Namespace",
+              "exported_service": "Service",
+              "namespace": "Namespace",
+              "pod": "Pod Name",
+              "runtime_class": "Runtime Class"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": null,
+      "description": "Services secured by Kata runtime",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "color-background",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "7.5.11",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "w5yLd7d4z"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "kubernetes_runtime_services{runtime_class=~\"kata.*\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "✅ TDX Protected Services",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "namespace": true,
+              "pod": true,
+              "service": true
+            },
+            "indexByName": {
+              "Time": 1,
+              "Value": 12,
+              "__name__": 2,
+              "container": 3,
+              "endpoint": 4,
+              "exported_namespace": 5,
+              "exported_service": 0,
+              "instance": 6,
+              "job": 7,
+              "namespace": 8,
+              "pod": 9,
+              "runtime_class": 10,
+              "service": 11
+            },
+            "renameByName": {
+              "Time": "",
+              "exported_namespace": "Namespace",
+              "exported_service": "Service",
+              "namespace": "Namespace",
+              "runtime_class": "Runtime Class",
+              "service": "Service Name"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "collapsed": true,
@@ -787,7 +805,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 29
       },
       "id": 22,
       "panels": [
@@ -976,14 +994,14 @@
                 "uid": "w5yLd7d4z"
               },
               "editorMode": "code",
-              "expr": "sum(increase(kata_monitor_scan_duration_seconds_bucket[1h])) by (le)",
+              "expr": "sum(increase(runtime_monitor_scan_duration_seconds_bucket[1h])) by (le)",
               "format": "heatmap",
               "legendFormat": "{{le}}",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Kata Monitor Scan Duration Distribution",
+          "title": "Runtime Monitor Scan Duration Distribution",
           "tooltip": {
             "show": true,
             "showHistogram": false
@@ -1015,11 +1033,7 @@
   "refresh": "10s",
   "schemaVersion": 27,
   "style": "dark",
-  "tags": [
-    "containers",
-    "kata",
-    "monitoring"
-  ],
+  "tags": [],
   "templating": {
     "list": [
       {
@@ -1052,6 +1066,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Container & TDX Runtime Monitoring",
-  "uid": "container-kata-monitor",
+  "uid": "sWrhgUYNzeee",
   "version": 2
 }
